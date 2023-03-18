@@ -12,7 +12,10 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private float DAMAGE_ON_HIT;
 
+    [SerializeField]
     private float health = 100;
+
+    private bool healing;
 
     // Start is called before the first frame update
     void Start()
@@ -36,14 +39,21 @@ public class PlayerController : MonoBehaviour
             }
 
         transform.position += velocity * SPEED * Time.deltaTime;
+
+        if (health <= 0f){
+            Destroy(this.gameObject);
+        }
     }
 
     void OnTriggerEnter(Collider collider)
     {
-        Debug.Log("UGA BUGA");
+        Debug.Log("Collision detected");
         if (collider.gameObject.tag == "Obstacle"){
-            Debug.Log("HULLO");
+            Debug.Log("Hit an obstacle!");
             health -= DAMAGE_ON_HIT;
+        }
+        else if (collider.gameObject.tag == "Serenity"){
+            Debug.Log("I'm in serenity");
         }
 
     }
