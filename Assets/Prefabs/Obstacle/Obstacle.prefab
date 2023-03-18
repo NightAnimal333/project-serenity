@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 1292663342903229646}
   - component: {fileID: 1040893399477506593}
   - component: {fileID: 8295758476372510923}
-  - component: {fileID: -1133920946927619165}
   m_Layer: 0
   m_Name: Obstacle
   m_TagString: Obstacle
@@ -192,7 +191,7 @@ PrefabInstance:
     - target: {fileID: -7511558181221131132, guid: 3f35fcc1eb8db4d419f9cbc5a687362f, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: c8ce3408c7b7d764e93b59543530f8a6, type: 2}
+      objectReference: {fileID: 2100000, guid: 0df07fd4029938a4da36c4e967f276ab, type: 2}
     - target: {fileID: 919132149155446097, guid: 3f35fcc1eb8db4d419f9cbc5a687362f, type: 3}
       propertyPath: m_Name
       value: nail_mesh
@@ -200,8 +199,30 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 3f35fcc1eb8db4d419f9cbc5a687362f, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1003602754727636400}
   m_SourcePrefab: {fileID: 100100000, guid: 3f35fcc1eb8db4d419f9cbc5a687362f, type: 3}
+--- !u!1 &7004977804515763215 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 3f35fcc1eb8db4d419f9cbc5a687362f, type: 3}
+  m_PrefabInstance: {fileID: 7924021846711032158}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1003602754727636400
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7004977804515763215}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d1d108ebc93df1645b659342f9a49c66, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerTransform: {fileID: 0}
+  isRightSide: 0
 --- !u!4 &7673428564076150453 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 3f35fcc1eb8db4d419f9cbc5a687362f, type: 3}
