@@ -47,11 +47,11 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
 
-        if (Input.GetKey(KeyCode.D))
+        if (Input.GetKey(KeyCode.D) && !blocked)
         { 
             targetVelocity.x += 5;
         }
-        else if (Input.GetKey(KeyCode.A))
+        else if (Input.GetKey(KeyCode.A) || blocked)
         {
             targetVelocity.x -= 5;
         } else 
