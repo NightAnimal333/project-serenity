@@ -19,6 +19,8 @@ public class PlayerController : MonoBehaviour
 
     private bool healing = false;
 
+    private bool blocked = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -40,11 +42,19 @@ public class PlayerController : MonoBehaviour
                 velocity.x -= 1;
             }
 
+        if (blocked){
+
+            velocity.x = -2;
+            
+        }
+
         transform.position += velocity * SPEED * Time.deltaTime;
 
-        if (healing && health < 100f){
+        if (healing && health < 100f && !blocked){
             health += HEALING_SPEED * Time.deltaTime;
         }
+
+
 
         if (health <= 0f){
             Destroy(this.gameObject);
@@ -55,12 +65,15 @@ public class PlayerController : MonoBehaviour
     {
         Debug.Log("TriggerEnter");
         if (collider.gameObject.tag == "Obstacle"){
-            Debug.Log("Hit an obstacle!");
+            // Debug.Log("Hit an obstacle!");
             health -= DAMAGE_ON_HIT;
         }
         else if (collider.gameObject.tag == "Serenity"){
-            Debug.Log("I'm in serenity");
+            // Debug.Log("I'm in serenity");
             healing = true;
+        }
+        if (collider.gameObject.tag == "SerenityBlocker"){
+            blocked = true;
         }
 
     }
@@ -69,8 +82,11 @@ public class PlayerController : MonoBehaviour
     {
         Debug.Log("TriggerExit");
         if (collider.gameObject.tag == "Serenity"){
-            Debug.Log("I'm in noise");
+            // Debug.Log("I'm in noise");
             healing = false;
+        }
+        if (collider.gameObject.tag == "SerenityBlocker"){
+            blocked = false;
         }
 
     }

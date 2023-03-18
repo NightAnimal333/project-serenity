@@ -12,9 +12,10 @@ GameObject:
   - component: {fileID: 5733755096196530214}
   - component: {fileID: 1895250789133973470}
   - component: {fileID: 6198718806180181308}
+  - component: {fileID: 5682758204764591673}
   m_Layer: 0
   m_Name: SerenityBlocker
-  m_TagString: Untagged
+  m_TagString: SerenityBlocker
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -105,3 +106,17 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &5682758204764591673
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5938798419367407416}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff297947934bb332d93e24f26082c226, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SPEED: 10
+  blockerSpawner: {fileID: 0}
