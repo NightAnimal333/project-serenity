@@ -20,45 +20,108 @@ public class PlayerController : MonoBehaviour
     private bool healing = false;
 
     private bool blocked = false;
+    private bool keyPressed = false;
+
+    [SerializeField]
+    private bool lerping = false;
+
+    [SerializeField]
+    private float slerpTimer = 0f;
+
+    private Vector3 oldVelocity;
+    private Vector3 velocity;
+
+    private Vector3 targetVelocity;
+
+    // private Rigidbody rigidbody;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        velocity = new Vector3(0, 0, 0);
+        targetVelocity = new Vector3(0, 0, 0);
+        // rigidbody = gameObject.GetComponent<Rigidbody>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        Vector3 velocity = new Vector3(0,0,0);
 
         if (Input.GetKey(KeyCode.D))
-            {
-                velocity.x += 1;
-            }
-
+        { 
+            targetVelocity.x += 5;
+        }
         else if (Input.GetKey(KeyCode.A))
-            {
-                velocity.x -= 1;
-            }
+        {
+            targetVelocity.x -= 5;
+        } else 
+        {
+            //targetVelocity = new Vector3(0, 0, 0);
+        }
 
-        if (blocked){
+        if (Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.D)){
 
-            velocity.x = -2;
+            targetVelocity = new Vector3(0, 0, 0);
+            slerpTimer = 0;
+
+        }
+
+        velocity = Vector3.Slerp(velocity, targetVelocity, slerpTimer);
+        slerpTimer += Time.deltaTime;
+
+        if (slerpTimer > 1){
+            slerpTimer = 0;
+        }
+
+        transform.position += new Vector3(velocity.x * Time.deltaTime, 0, 0) * SPEED;
+
+
+
+        // if (Input.GetKey(KeyCode.D))
+        // {
             
-        }
+        //     velocity.x += 5;
+        //     lerping = true;
+        //     keyPressed = true;
+        //     // slerpTimer = .5f;
 
-        transform.position += velocity * SPEED * Time.deltaTime;
+        // }
 
-        if (healing && health < 100f && !blocked){
-            health += HEALING_SPEED * Time.deltaTime;
-        }
+        // else if (Input.GetKey(KeyCode.A))
+        // {
+        //     velocity.x -= 5;
+        //     lerping = true;
+        //     keyPressed = true;
+        //     // slerpTimer = .5f;
 
+        // }
+        // else
+        // {
+        //     keyPressed = false;
+        // }
 
+        // if (Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.D)){
+        //     velocity = new Vector3 (0,0,0);
+        //     oldVelocity = velocity;
+        //     slerpTimer = 0;
+        //     lerping = true;
+        // }
 
-        if (health <= 0f){
-            Destroy(this.gameObject);
-        }
+        // if (lerping){
+        //     // This means we only Lerp the X-axis
+        //     velocity = new Vector3(Vector3.Slerp(oldVelocity, velocity, slerpTimer).x, velocity.y, velocity.z);
+        //     slerpTimer += SPEED;
+        // }
+
+        // if (slerpTimer > 1 && !keyPressed){
+        //     lerping = false;
+        //     slerpTimer = 0;
+        //     velocity = new Vector3(0,0,0);
+                        
+        // }
+
+        // transform.position += velocity * Time.deltaTime;
+
     }
 
     void OnTriggerEnter(Collider collider)
