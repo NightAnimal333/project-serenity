@@ -125,8 +125,8 @@ public class PlayerController : MonoBehaviour
             Destroy(this.gameObject);
         }
 
-        if (healing){
-            health += 1f * Time.deltaTime;
+        if (healing && health < 100 && !blocked){
+            health += HEALING_SPEED * Time.deltaTime;
         }
 
 

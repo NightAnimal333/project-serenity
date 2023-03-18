@@ -202,9 +202,9 @@ MonoBehaviour:
   spawner: {fileID: 1684255}
   blockerPrefab: {fileID: 5938798419367407416, guid: 596643810d9c3b11bb57b3c3ca172d79, type: 3}
   blockers: []
-  maxTimeBetweenSpawns: 2
-  minTimeBetweenSpawns: 5
-  concurrentBlockers: 8
+  maxTimeBetweenSpawns: 3
+  minTimeBetweenSpawns: 6
+  concurrentBlockers: 4
 --- !u!1 &536662421
 GameObject:
   m_ObjectHideFlags: 0
@@ -317,7 +317,7 @@ MonoBehaviour:
   SPEED: 0.1
   MAX_HEALTH: 100
   DAMAGE_ON_HIT: 10
-  HEALING_SPEED: 1
+  HEALING_SPEED: 3
   DRAG_MODIFIER: 2
   ACCELERATION_MODIFIER: 1
   health: 100
@@ -616,7 +616,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1438538666}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -1218,7 +1218,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2144126142}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
