@@ -7,6 +7,13 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private float SPEED;
 
+    [SerializeField]
+    private float MAX_HEALTH;
+    [SerializeField]
+    private float DAMAGE_ON_HIT;
+
+    private float health = 100;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -29,5 +36,15 @@ public class PlayerController : MonoBehaviour
             }
 
         transform.position += velocity * SPEED * Time.deltaTime;
+    }
+
+    void OnTriggerEnter(Collider collider)
+    {
+        Debug.Log("UGA BUGA");
+        if (collider.gameObject.tag == "Obstacle"){
+            Debug.Log("HULLO");
+            health -= DAMAGE_ON_HIT;
+        }
+
     }
 }

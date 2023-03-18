@@ -264,29 +264,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SPEED: 10
---- !u!136 &595957110
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 595957104}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
+  MAX_HEALTH: 100
+  DAMAGE_ON_HIT: 0
 --- !u!1 &1129163481
 GameObject:
   m_ObjectHideFlags: 0
@@ -697,7 +676,4 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 6785322834627072488, guid: f3ee8cc6bad22c9be94e7d48d0af0203, type: 3}
       insertIndex: -1
       addedObject: {fileID: 595957109}
-    - targetCorrespondingSourceObject: {fileID: 6785322834627072488, guid: f3ee8cc6bad22c9be94e7d48d0af0203, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 595957110}
   m_SourcePrefab: {fileID: 100100000, guid: f3ee8cc6bad22c9be94e7d48d0af0203, type: 3}
