@@ -15,6 +15,6 @@ public class HealthUI : MonoBehaviour
 
     public void UpdateHealthText(float health)
     {
-        healthText.text = health + "%";
+        healthText.text = health;
     }
 }
