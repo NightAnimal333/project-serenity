@@ -30,6 +30,13 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+        HealthUI healthUI = FindObjectOfType<HealthUI>();
+        if (healthUI != null)
+        {
+            healthUI.UpdateHealthText(health);
+        }
+
         Vector3 velocity = new Vector3(0,0,0);
 
         if (Input.GetKey(KeyCode.D))
