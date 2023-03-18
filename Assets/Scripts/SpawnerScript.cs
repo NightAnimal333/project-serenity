@@ -5,7 +5,7 @@ using UnityEngine;
 public class SpawnerScript : MonoBehaviour
 {
     [SerializeField]
-    private List<GameObject> spawners; 
+    private GameObject spawner; 
 
     [SerializeField]
     private GameObject obstacle;
@@ -27,10 +27,11 @@ public class SpawnerScript : MonoBehaviour
         timer += Time.deltaTime;
         if (timer >= timeBetweenSpawns){
 
-            int randomSpawner = Random.Range(0, spawners.Count);
             timer = 0;
 
-            Instantiate(obstacle, spawners[randomSpawner].transform.position, Quaternion.identity);
+            float randomXCoordinate = Random.Range(-5f, 5f);
+            
+            Instantiate(obstacle, new Vector3(randomXCoordinate, spawner.transform.position.y, spawner.transform.position.z), Quaternion.identity);
 
         }
     }
