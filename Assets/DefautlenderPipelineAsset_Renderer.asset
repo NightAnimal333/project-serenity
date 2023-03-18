@@ -15,8 +15,8 @@ MonoBehaviour:
   debugShaders:
     debugReplacementPS: {fileID: 4800000, guid: cf852408f2e174538bcd9b7fda1c5ae7, type: 3}
   m_RendererFeatures:
-  - {fileID: 1358831867026222575}
-  m_RendererFeatureMap: ef2d9437628adb12
+  - {fileID: 2621153253313079149}
+  m_RendererFeatureMap: 6de79515ff346024
   m_UseNativeRenderPass: 0
   postProcessData: {fileID: 11400000, guid: 41439944d30ece34e96484bdb6645b55, type: 2}
   xrSystemData: {fileID: 11400000, guid: 60e1133243b97e347b653163a8c01b64, type: 2}
@@ -53,7 +53,7 @@ MonoBehaviour:
   m_CopyDepthMode: 1
   m_AccurateGbufferNormals: 0
   m_IntermediateTextureMode: 1
---- !u!114 &1358831867026222575
+--- !u!114 &2621153253313079149
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -65,10 +65,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c65806f6d49eb02459753e1110d3bdc1, type: 3}
   m_Name: DrawFullscreenFeature
   m_EditorClassIdentifier: 
-  m_Active: 0
+  m_Active: 1
   settings:
     renderPassEvent: 500
-    blitMaterial: {fileID: -876546973899608171, guid: d93c4c8b0c557ea42ac6360fd9755fd9, type: 3}
+    blitMaterial: {fileID: 2100000, guid: 6f45dbff003284744b41f87dce7b7ef3, type: 2}
     blitMaterialPassIndex: 0
     sourceType: 0
     destinationType: 0
