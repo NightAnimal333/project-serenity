@@ -14,7 +14,7 @@ public class PlayerController : MonoBehaviour
     private float HEALING_SPEED;
 
     [SerializeField]
-    private float health = 100;
+    public float health = 100;
 
 
     private bool healing = false;
@@ -90,17 +90,6 @@ public class PlayerController : MonoBehaviour
 
         if (!healing)
         {
-            timeInLight += Time.deltaTime;
-            if (timeInLight >= maxTimeInLight)
-            {
-                musicManagerController.PlayTheme(MusicManagerController.Theme.Broken);
-            }
-            // if (!dragging){
-            //     transform.position += new Vector3(velocity.x * Time.deltaTime, 0, 0) * SPEED;
-            // } else {
-            //     transform.position += new Vector3(velocity.x * Time.deltaTime, 0, 0) * SPEED / DRAG_MODIFIER;
-            // }
-
 
             if (health <= 0)
             {
@@ -122,18 +111,18 @@ public class PlayerController : MonoBehaviour
                     blitMat.SetFloat("_DeathFloat", -1f);
                 }
             }
-            if (!healing) {
-                timeInLight += Time.deltaTime;
-                if (timeInLight >= maxTimeInLight)
-                {
-                    musicManagerController.PlayTheme(MusicManagerController.Theme.Broken);
-                }
-            }
-            else
+
+
+            timeInLight += Time.deltaTime;
+            if (timeInLight >= maxTimeInLight)
             {
-                timeInLight = 0;
+                musicManagerController.PlayTheme(MusicManagerController.Theme.Broken);
             }
 
+        }
+        else
+        {
+            timeInLight = 0;
         }
     }
     void OnTriggerEnter(Collider collider)
