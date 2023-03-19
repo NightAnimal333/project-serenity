@@ -51,58 +51,45 @@ public class PlayerController : MonoBehaviour
 
     // Update is called once per frame
     void Update()
+{
+    float hInput = Convert.ToSingle(Input.GetKey(KeyCode.D)) - Convert.ToSingle(Input.GetKey(KeyCode.A));
+    float targetSpeed = hInput * topSpeed;
+    if (blocked)
+        targetSpeed = -topSpeed;
+    float x = gameObject.transform.position.x;
+    if (x >= 14)
+        targetSpeed = -topSpeed;
+    else if (x <= -4)
+        targetSpeed = topSpeed;
+    speed = Mathf.Lerp(speed, targetSpeed * Time.deltaTime, accelerationSpeed * Time.deltaTime);
+    gameObject.transform.position += new Vector3(speed, 0f, 0f);
+    if (healing && health < 100 && !blocked)
     {
-
-        float hInput = Convert.ToSingle(Input.GetKey(KeyCode.D)) - Convert.ToSingle(Input.GetKey(KeyCode.A));
-
-        float targetSpeed = hInput * topSpeed;
-        if (blocked)
-            targetSpeed = -topSpeed;
-
-        float x = gameObject.transform.position.x;
-        if (x >= 14)
-            targetSpeed = -topSpeed;
-        else if (x <= -4)
-            targetSpeed = topSpeed;
-
-        speed = Mathf.Lerp(speed, targetSpeed * Time.deltaTime, accelerationSpeed * Time.deltaTime);
-
-        gameObject.transform.position += new Vector3(speed, 0f, 0f);
-
-
-        }
-
-        if (healing && health < 100 && !blocked){
-            health += HEALING_SPEED * Time.deltaTime;
-        }
-
-        // Update health, speed, velocity, and damage on hit text from HealthUI
-
-        HealthUI healthUI = FindObjectOfType<HealthUI>();
-        if (healthUI != null)
-        {
-            healthUI.UpdateHealthText(health);
-            healthUI.UpdateSpeedText(SPEED);
-            healthUI.UpdateMaxVelocityText(MAX_VELOCITY);
-            healthUI.UpdateDamageOnHitText(DAMAGE_ON_HIT);
-
-        }
-
-
-        if (!healing)
-        {
-            timeInLight += Time.deltaTime;
-            if (timeInLight >= maxTimeInLight)
-            {
-                musicManagerController.PlayTheme(MusicManagerController.Theme.Broken);
-            }
-        }
-        else
-        {
-            timeInLight = 0;
-        }
-
+        health += HEALING_SPEED * Time.deltaTime;
     }
+    // Update health, speed, velocity, and damage on hit text from HealthUI
+    HealthUI healthUI = FindObjectOfType<HealthUI>();
+    if (healthUI != null)
+    {
+        healthUI.UpdateHealthText(health);
+        healthUI.UpdateSpeedText(SPEED);
+        healthUI.UpdateMaxVelocityText(MAX_VELOCITY);
+        healthUI.UpdateDamageOnHitText(DAMAGE_ON_HIT);
+    }
+    if (!healing)
+    {
+        timeInLight += Time.deltaTime;
+        if (timeInLight >= maxTimeInLight)
+        {
+            musicManagerController.PlayTheme(MusicManagerController.Theme.Broken);
+        }
+    }
+    else
+    {
+        timeInLight = 0;
+    }
+}
+
 
     void OnTriggerEnter(Collider collider)
     {
