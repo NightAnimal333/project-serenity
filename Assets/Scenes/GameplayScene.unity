@@ -385,6 +385,11 @@ MonoBehaviour:
   maxTimeBetweenSpawns: 3
   minTimeBetweenSpawns: 6
   concurrentBlockers: 8
+--- !u!1 &531660107 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7582964321287285615, guid: da8de1cf4641c3046be5345dfeeaa619, type: 3}
+  m_PrefabInstance: {fileID: 667641751}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &536662421
 GameObject:
   m_ObjectHideFlags: 0
@@ -421,8 +426,8 @@ Camera:
   m_GameObject: {fileID: 536662421}
   m_Enabled: 1
   serializedVersion: 2
-  m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_ClearFlags: 2
+  m_BackGroundColor: {r: 1, g: 1, b: 1, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -540,8 +545,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SPEED: 0.1
   MAX_HEALTH: 0
-  DAMAGE_ON_HIT: 0
-  HEALING_SPEED: 0
+  DAMAGE_ON_HIT: 2
+  HEALING_SPEED: 1
   DRAG_MODIFIER: 0
   ACCELERATION_MODIFIER: 1
   health: 100
@@ -550,6 +555,9 @@ MonoBehaviour:
   slerpTimer: 0
   topSpeed: 10
   accelerationSpeed: 5
+  deathSpeed: 0.66
+  blitMat: {fileID: 2100000, guid: 6f45dbff003284744b41f87dce7b7ef3, type: 2}
+  playerVisuals: {fileID: 531660107}
 --- !u!4 &595957114 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2360310409935436271, guid: f3ee8cc6bad22c9be94e7d48d0af0203, type: 3}

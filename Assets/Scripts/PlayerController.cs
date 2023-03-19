@@ -49,6 +49,12 @@ public class PlayerController : MonoBehaviour
     public float accelerationSpeed;
     private float speed;
 
+    private float deathFloat;
+    public float deathSpeed;
+    public Material blitMat;
+
+    public GameObject playerVisuals;
+
 
     // private Rigidbody rigidbody;
 
@@ -58,6 +64,8 @@ public class PlayerController : MonoBehaviour
         velocity = new Vector3(0, 0, 0);
         targetVelocity = new Vector3(0, 0, 0);
         // rigidbody = gameObject.GetComponent<Rigidbody>();
+
+        deathFloat = -1f;
     }
 
     // Update is called once per frame
@@ -157,7 +165,17 @@ public class PlayerController : MonoBehaviour
         transform.position += new Vector3(velocity.x * Time.deltaTime, 0, 0) * SPEED;
 
         if (health <= 0){
-            Destroy(this.gameObject);
+
+            playerVisuals.active = false;
+
+            deathFloat = Mathf.Lerp(deathFloat, 1.1f, deathSpeed * Time.deltaTime);
+            blitMat.SetFloat("_DeathFloat", deathFloat);
+            Debug.Log("HEY");
+
+            if (deathFloat > 1f)
+            {
+                //Switch to other scene
+            }
         }
 
         if (healing && health < 100 && !blocked){
