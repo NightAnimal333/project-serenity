@@ -547,7 +547,6 @@ MonoBehaviour:
   DAMAGE_ON_HIT: 0
   HEALING_SPEED: 0
   health: 100
-  slerpTimer: 0
   topSpeed: 10
   accelerationSpeed: 5
   musicManagerController: {fileID: 645377836}
@@ -1243,6 +1242,7 @@ MonoBehaviour:
   spawner: {fileID: 1137693291}
   obstacle: {fileID: 2763003649743662146, guid: 8d2c43f4e888ecb4a82278b89a250863, type: 3}
   timeBetweenSpawns: 0.15
+  chanceToSpawnInMiddle: 5.8
 --- !u!1 &1940356282
 GameObject:
   m_ObjectHideFlags: 0
