@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -28,83 +29,51 @@ public class PlayerController : MonoBehaviour
 
 
     private bool healing = false;
-
     private bool blocked = false;
-    private bool keyPressed = false;
-    private bool dragging = false;
+
+    public float topSpeed;
+    public float accelerationSpeed;
+    private float speed;
 
     [SerializeField]
-    private bool lerping = false;
+    private MusicManagerController musicManagerController;
+
+    float timeInLight;
 
     [SerializeField]
-    private float slerpTimer = 0f;
-
-    private Vector3 velocity;
-    private Vector3 targetVelocity;
-
-    // private Rigidbody rigidbody;
+    float maxTimeInLight;
 
     // Start is called before the first frame update
     void Start()
     {
-        velocity = new Vector3(0, 0, 0);
-        targetVelocity = new Vector3(0, 0, 0);
         // rigidbody = gameObject.GetComponent<Rigidbody>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (!blocked)
-        {
 
-            // Basic input checks
-            if (Input.GetKey(KeyCode.D) && targetVelocity.x < MAX_VELOCITY)
-            {
-                targetVelocity.x += 5;
-                keyPressed = true;
-                lerping = true;
-            }
-            else if ((Input.GetKey(KeyCode.A)) && targetVelocity.x > -MAX_VELOCITY)
-            {
-                targetVelocity.x -= 5;
-                keyPressed = true;
-                lerping = true;
-            }
-            else
-            {
-                keyPressed = false;
-            }
+        float hInput = Convert.ToSingle(Input.GetKey(KeyCode.D)) - Convert.ToSingle(Input.GetKey(KeyCode.A));
 
-            bool leftPressed = Input.GetKeyDown(KeyCode.A);
-            bool rightPressed = Input.GetKeyDown(KeyCode.D);
+        float targetSpeed = hInput * topSpeed;
+        if (blocked)
+            targetSpeed = -topSpeed;
 
-            if (leftPressed || rightPressed)
-            {
-                if (!(leftPressed && velocity.x < 0) && !(rightPressed && velocity.x > 0))
-                {
-                    velocity = velocity / 2;
-                }
-                targetVelocity = new Vector3(0, 0, 0);
-                slerpTimer = 0;
-            }
+        float x = gameObject.transform.position.x;
+        if (x >= 14)
+            targetSpeed = -topSpeed;
+        else if (x <= -4)
+            targetSpeed = topSpeed;
 
-            if (slerpTimer > 1 && !keyPressed)
-            {
-                slerpTimer = 0;
-                lerping = false;
-            }
+        speed = Mathf.Lerp(speed, targetSpeed * Time.deltaTime, accelerationSpeed * Time.deltaTime);
 
-            if (lerping)
-            {
-                velocity = Vector3.Lerp(velocity, targetVelocity, slerpTimer);
-                slerpTimer += ACCELERATION_MODIFIER * Time.deltaTime;
-            }
+        gameObject.transform.position += new Vector3(speed, 0f, 0f);
+
 
         }
-        else
-        {
-            velocity = new Vector3(-MAX_VELOCITY, 0, 0);
+
+        if (healing && health < 100 && !blocked){
+            health += HEALING_SPEED * Time.deltaTime;
         }
 
         // Update health, speed, velocity, and damage on hit text from HealthUI
@@ -120,23 +89,18 @@ public class PlayerController : MonoBehaviour
         }
 
 
-        // if (!dragging){
-        //     transform.position += new Vector3(velocity.x * Time.deltaTime, 0, 0) * SPEED;
-        // } else {
-        //     transform.position += new Vector3(velocity.x * Time.deltaTime, 0, 0) * SPEED / DRAG_MODIFIER;
-        // }
-
-        transform.position += new Vector3(velocity.x * Time.deltaTime, 0, 0) * SPEED;
-
-        if (health <= 0){
-            Destroy(this.gameObject);
+        if (!healing)
+        {
+            timeInLight += Time.deltaTime;
+            if (timeInLight >= maxTimeInLight)
+            {
+                musicManagerController.PlayTheme(MusicManagerController.Theme.Broken);
+            }
         }
-
-        if (healing && health < 100 && !blocked){
-            health += HEALING_SPEED * Time.deltaTime;
+        else
+        {
+            timeInLight = 0;
         }
-
-
 
     }
 
@@ -145,16 +109,19 @@ public class PlayerController : MonoBehaviour
         Debug.Log("TriggerEnter");
         if (collider.gameObject.tag == "Obstacle"){
             // Debug.Log("Hit an obstacle!");
+            musicManagerController.PlaySound(MusicManagerController.Sound.Hit);
             health -= DAMAGE_ON_HIT;
         }
         else if (collider.gameObject.tag == "Serenity"){
             // Debug.Log("I'm in serenity");
             healing = true;
+            musicManagerController.PlayTheme(MusicManagerController.Theme.Dark);
+            musicManagerController.PlaySound(MusicManagerController.Sound.IntoSerenity);
         } else if (collider.gameObject.tag == "Border"){
-            targetVelocity = -velocity;
-            velocity = new Vector3(0,0,0);
+
         }
         if (collider.gameObject.tag == "SerenityBlocker"){
+            musicManagerController.PlaySound(MusicManagerController.Sound.SerenityBlocked);
             blocked = true;
         }
 
@@ -165,11 +132,12 @@ public class PlayerController : MonoBehaviour
         Debug.Log("TriggerExit");
         if (collider.gameObject.tag == "Serenity"){
             // Debug.Log("I'm in noise");
+            musicManagerController.PlayTheme(MusicManagerController.Theme.Light);
+            musicManagerController.PlaySound(MusicManagerController.Sound.IntoNoise);
             healing = false;
         }
         if (collider.gameObject.tag == "SerenityBlocker"){
             blocked = false;
-            lerping = false;
         }
 
     }

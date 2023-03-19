@@ -13,6 +13,9 @@ public class SpawnerScript : MonoBehaviour
     [SerializeField]
     private float timeBetweenSpawns;
 
+    [SerializeField]
+    private float chanceToSpawnInMiddle;
+
     private float timer;
 
     // Start is called before the first frame update
@@ -32,7 +35,8 @@ public class SpawnerScript : MonoBehaviour
             // Some trickery to make the obstacles spawn more frequently closer to the divide line.
             float temp = Random.Range(0f, 10f);
             float randomXCoordinate;
-            if (temp > 6.5f){
+            if (temp > chanceToSpawnInMiddle)
+            {
                 randomXCoordinate = (Random.Range(-5f, 2f));
             } else {
                 randomXCoordinate = (Random.Range(2f, 5f));
