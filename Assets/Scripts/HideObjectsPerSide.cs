@@ -22,9 +22,9 @@ public class HideObjectsPerSide : MonoBehaviour
         playerTransform = GameObject.Find("Player").transform;
 
         if ((playerTransform.position.x > 5f) == isRightSide)
-            lightness = 0f;
+            lightness = 0.1f;
         else
-            lightness = 1f;
+            lightness = 0.9f;
 
         
         
@@ -34,9 +34,9 @@ public class HideObjectsPerSide : MonoBehaviour
     void Update()
     {
         if ((playerTransform.position.x > 5f) == isRightSide)
-            lightness = Mathf.Lerp(lightness, 0f, 6f * Time.deltaTime);
+            lightness = Mathf.Lerp(lightness, 0.1f, 6f * Time.deltaTime);
         else
-            lightness = Mathf.Lerp(lightness, 1f, 6f * Time.deltaTime);
+            lightness = Mathf.Lerp(lightness, 0.9f, 6f * Time.deltaTime);
 
         matt.SetFloat("_Color", lightness);
     }
