@@ -393,11 +393,6 @@ MonoBehaviour:
   maxTimeBetweenSpawns: 3
   minTimeBetweenSpawns: 6
   concurrentBlockers: 8
---- !u!1 &531660107 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7582964321287285615, guid: da8de1cf4641c3046be5345dfeeaa619, type: 3}
-  m_PrefabInstance: {fileID: 667641751}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &536662421
 GameObject:
   m_ObjectHideFlags: 0
@@ -555,13 +550,16 @@ MonoBehaviour:
   MAX_HEALTH: 0
   DAMAGE_ON_HIT: 10
   HEALING_SPEED: 2
+  DRAG_MODIFIER: 0
+  ACCELERATION_MODIFIER: 0
   health: 100
+  MAX_VELOCITY: 1000
   topSpeed: 10
   accelerationSpeed: 5
   deathSpeed: 0.66
   blitMat: {fileID: 2100000, guid: 6f45dbff003284744b41f87dce7b7ef3, type: 2}
-  
-  playerVisuals: {fileID: 531660107}
+  musicManagerController: {fileID: 0}
+  playerVisuals: {fileID: 0}
   maxTimeInLight: 0
 --- !u!4 &595957114 stripped
 Transform:
@@ -680,6 +678,11 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: 3562056687674340458, guid: da8de1cf4641c3046be5345dfeeaa619, type: 3}
   m_PrefabInstance: {fileID: 667641751}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &895508081 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2404112210116652624, guid: 98893e9b1537a6245835685d577ff587, type: 3}
+  m_PrefabInstance: {fileID: 3151143079442399934}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1129163481
 GameObject:
@@ -1661,6 +1664,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1940356286}
     m_Modifications:
+    - target: {fileID: 2324950120799734071, guid: 98893e9b1537a6245835685d577ff587, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2404112210116652624, guid: 98893e9b1537a6245835685d577ff587, type: 3}
       propertyPath: m_Name
       value: DebugPanel
@@ -1674,9 +1681,21 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4888250230987264769, guid: 98893e9b1537a6245835685d577ff587, type: 3}
+      propertyPath: UICanvas
+      value: 
+      objectReference: {fileID: 1940356285}
+    - target: {fileID: 4888250230987264769, guid: 98893e9b1537a6245835685d577ff587, type: 3}
+      propertyPath: debugPanel
+      value: 
+      objectReference: {fileID: 895508081}
+    - target: {fileID: 4888250230987264769, guid: 98893e9b1537a6245835685d577ff587, type: 3}
       propertyPath: playerController
       value: 
       objectReference: {fileID: 595957109}
+    - target: {fileID: 4888250230987264769, guid: 98893e9b1537a6245835685d577ff587, type: 3}
+      propertyPath: isDebugPanelActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5154745471690835568, guid: 98893e9b1537a6245835685d577ff587, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -1760,6 +1779,10 @@ PrefabInstance:
     - target: {fileID: 5154745471690835568, guid: 98893e9b1537a6245835685d577ff587, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5208577645472264700, guid: 98893e9b1537a6245835685d577ff587, type: 3}
+      propertyPath: m_CullTransparentMesh
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5284637859134922986, guid: 98893e9b1537a6245835685d577ff587, type: 3}
       propertyPath: m_AnchorMax.y

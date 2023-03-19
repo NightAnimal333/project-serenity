@@ -19,6 +19,15 @@ public class HealthUI : MonoBehaviour
         speedText = GetComponent<TextMeshProUGUI>();
     }
 
+    //update the health text every three seconds
+    private void Update()
+    {
+        InvokeRepeating("UpdateHealthText", 0f, 3f);
+        InvokeRepeating("UpdateMaxVelocityText", 0f, 3f);
+        InvokeRepeating("UpdateDamageOnHitText", 0f, 3f);
+        InvokeRepeating("UpdateSpeedText", 0f, 3f);
+    }
+
     public void UpdateHealthText(float health)
     {
         healthText.text = health.ToString();
