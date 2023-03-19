@@ -549,6 +549,8 @@ MonoBehaviour:
   MAX_VELOCITY: 1000
   lerping: 0
   slerpTimer: 0
+  topSpeed: 0.33
+  accelerationSpeed: 5
 --- !u!4 &595957114 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2360310409935436271, guid: f3ee8cc6bad22c9be94e7d48d0af0203, type: 3}
@@ -1777,7 +1779,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -7005605415018490027, guid: f3ee8cc6bad22c9be94e7d48d0af0203, type: 3}
       propertyPath: m_Constraints
-      value: 124
+      value: 126
       objectReference: {fileID: 0}
     - target: {fileID: -7005605415018490027, guid: f3ee8cc6bad22c9be94e7d48d0af0203, type: 3}
       propertyPath: m_IsKinematic

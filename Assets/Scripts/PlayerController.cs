@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -41,6 +42,14 @@ public class PlayerController : MonoBehaviour
     private Vector3 velocity;
     private Vector3 targetVelocity;
 
+
+
+
+    public float topSpeed;
+    public float accelerationSpeed;
+    private float speed;
+
+
     // private Rigidbody rigidbody;
 
     // Start is called before the first frame update
@@ -56,7 +65,7 @@ public class PlayerController : MonoBehaviour
     {
         if (!blocked)
         {
-
+            /*
             // Basic input checks
             if (Input.GetKey(KeyCode.D) && targetVelocity.x < MAX_VELOCITY)
             {
@@ -106,6 +115,22 @@ public class PlayerController : MonoBehaviour
         {
             velocity = new Vector3(-MAX_VELOCITY, 0, 0);
         }
+        */
+
+            
+        }
+
+        float hInput = Convert.ToSingle(Input.GetKey(KeyCode.D)) - Convert.ToSingle(Input.GetKey(KeyCode.A));
+
+        float targetSpeed = hInput * topSpeed;
+        if (blocked)
+            targetSpeed = -topSpeed;
+
+        speed = Mathf.Lerp(speed, targetSpeed, accelerationSpeed * Time.deltaTime);
+
+        gameObject.transform.position += new Vector3(speed, 0f, 0f);
+
+
 
         HealthUI healthUI = FindObjectOfType<HealthUI>();
         if (healthUI != null)
