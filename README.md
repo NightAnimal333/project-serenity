@@ -4,14 +4,16 @@ This game was developed as a part of [March Game Jam 2023](https://itch.io/jam/m
 
 ## Team
 Arvid Lundberg - Sonic Artisan
+
 [Spotify](https://open.spotify.com/artist/24h2o0HACWwgsS2Fbgqz50?si=9978c80eb5784e00)
+
 [Website](arvidlundberg.se)
 
 Artūrs Umbraško - Digital Dreamweaver
 
 [LinkedIn](https://www.linkedin.com/in/arturs-umbrasko/)
 
-[Itch.io](https://nightanimal333.itch.io/)
+[Itch.io](https://itch.io/profile/nightanimal333)
 
 Johnny Hamnesjö - Interface Alchemist
 
