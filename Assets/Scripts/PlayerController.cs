@@ -7,14 +7,26 @@ using UnityEngine.SceneManagement;
 public class PlayerController : MonoBehaviour
 {
     [SerializeField]
-    private float MAX_HEALTH;
-    [SerializeField]
-    private float DAMAGE_ON_HIT;
-    [SerializeField]
-    private float HEALING_SPEED;
+    public float SPEED;
 
     [SerializeField]
-    private float health = 100;
+    public float MAX_HEALTH;
+    [SerializeField]
+    public float DAMAGE_ON_HIT;
+    [SerializeField]
+    public float HEALING_SPEED;
+
+    [SerializeField]
+    public float DRAG_MODIFIER;
+    [SerializeField]
+    public float ACCELERATION_MODIFIER;
+
+    [SerializeField]
+    public float health = 100;
+
+    [SerializeField]
+    public float MAX_VELOCITY = 1000;
+
 
 
     private bool healing = false;
@@ -54,27 +66,20 @@ public class PlayerController : MonoBehaviour
 
     // Update is called once per frame
     void Update()
+{
+    float hInput = Convert.ToSingle(Input.GetKey(KeyCode.D)) - Convert.ToSingle(Input.GetKey(KeyCode.A));
+    float targetSpeed = hInput * topSpeed;
+    if (blocked)
+        targetSpeed = -topSpeed;
+    float x = gameObject.transform.position.x;
+    if (x >= 14)
+        targetSpeed = -topSpeed;
+    else if (x <= -4)
+        targetSpeed = topSpeed;
+    speed = Mathf.Lerp(speed, targetSpeed * Time.deltaTime, accelerationSpeed * Time.deltaTime);
+    gameObject.transform.position += new Vector3(speed, 0f, 0f);
+    if (healing && health < 100 && !blocked)
     {
-
-        float hInput = Convert.ToSingle(Input.GetKey(KeyCode.D)) - Convert.ToSingle(Input.GetKey(KeyCode.A));
-
-        float targetSpeed = hInput * topSpeed;
-        if (blocked)
-            targetSpeed = -topSpeed;
-
-        float x = gameObject.transform.position.x;
-        if (x >= 14)
-            targetSpeed = -topSpeed;
-        else if (x <= -4)
-            targetSpeed = topSpeed;
-
-        speed = Mathf.Lerp(speed, targetSpeed * Time.deltaTime, accelerationSpeed * Time.deltaTime);
-
-        gameObject.transform.position += new Vector3(speed, 0f, 0f);
-
-
-
-
 
         if (healing && health < 100 && !blocked)
         {
@@ -84,8 +89,14 @@ public class PlayerController : MonoBehaviour
         HealthUI healthUI = FindObjectOfType<HealthUI>();
         if (healthUI != null)
         {
-            healthUI.UpdateHealthText(health);
+            musicManagerController.PlayTheme(MusicManagerController.Theme.Broken);
         }
+    }
+    else
+    {
+        timeInLight = 0;
+    }
+
 
 
         if (!healing)
