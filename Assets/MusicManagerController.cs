@@ -6,11 +6,20 @@ public class MusicManagerController : MonoBehaviour
 {
     // Start is called before the first frame update
 
-    public enum Audio
+    public enum Theme
     {
         Dark,
         Light,
         Broken
+    }
+
+    public enum Sound
+    {
+        IntoSerenity,
+        IntoNoise,
+        SerenityBlocked,
+        Death,
+        Hit
     }
 
     [SerializeField]
@@ -20,11 +29,27 @@ public class MusicManagerController : MonoBehaviour
     [SerializeField]
     private AudioSource brokenAudio;
 
-    Audio currentTheme;
+    [SerializeField]
+    private AudioSource intoSerenity;
+    [SerializeField]
+    private AudioSource intoNoise;
+    [SerializeField]
+    private AudioSource serenityBlocked;
+    [SerializeField]
+    private AudioSource death;
+    [SerializeField]
+    private AudioSource hit1;
+    [SerializeField]
+    private AudioSource hit2;
+
+    int lastHitSound = 1;
+
+
+    Theme currentTheme;
 
     void Start()
     {
-        currentTheme = Audio.Dark;
+        currentTheme = Theme.Dark;
 
         darkAudio.Play();
         lightAudio.Play();
@@ -40,26 +65,26 @@ public class MusicManagerController : MonoBehaviour
         
     }
 
-    public void PlayTheme(Audio theme)
+    public void PlayTheme(Theme theme)
     {
         switch (theme)
         {
 
-            case (Audio.Dark):
+            case (Theme.Dark):
             {
                     darkAudio.mute = false;
                     lightAudio.mute = true;
                     brokenAudio.mute = true;
                     break;
             }
-            case (Audio.Light):
+            case (Theme.Light):
                 {
                     darkAudio.mute = true;
                     lightAudio.mute = false;
                     brokenAudio.mute = true;
                     break;
             }
-            case (Audio.Broken):
+            case (Theme.Broken):
             {
                     darkAudio.mute = true;
                     lightAudio.mute = true;
@@ -67,6 +92,48 @@ public class MusicManagerController : MonoBehaviour
                     break;
             }
 
+        }
+        currentTheme = theme;
+    }
+
+    public void PlaySound(Sound sound)
+    {
+        switch (sound)
+        {
+            case Sound.IntoSerenity:
+                {
+                    intoSerenity.Play();
+                    break;
+                }
+            case Sound.IntoNoise:
+                {
+                    intoNoise.Play();
+                    break;
+                }
+            case Sound.SerenityBlocked:
+                {
+                    serenityBlocked.Play();
+                    break;
+                }
+            case Sound.Hit:
+                {
+                    Debug.Log(lastHitSound);
+                    if (lastHitSound == 1)
+                    {
+                        hit2.Play();
+                        lastHitSound = 2;
+                    } else
+                    {
+                        hit1.Play();
+                        lastHitSound = 1;
+                    }
+                    break;
+                }
+            case Sound.Death:
+                {
+                    death.Play();
+                    break;
+                }
         }
     }
 
