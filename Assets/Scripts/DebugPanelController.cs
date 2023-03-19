@@ -47,6 +47,27 @@ public class DebugPanelController : MonoBehaviour
 // Update is called once per frame
 void Update()
 {
+    //when P is pressed, if isDebugPanelActive is true, set it to false, and vice versa
+    if (Input.GetKeyDown(KeyCode.P))
+    {
+        isDebugPanelActive = !isDebugPanelActive;
+    }
+
+    Debug.Log("NISINDAONDOA");
+
+
+    //when isDebugPanelActive is false, set the debug panel X coordinates to 620 and Y coordinates to -107
+    if (isDebugPanelActive == false)
+    {
+        debugPanel.transform.position = new Vector3(620, 400, 0);
+    }
+
+    //when isDebugPanelActive is true, set the debug panel X coordinates to 286 and Y coordinates to -107
+    if (isDebugPanelActive == true)
+    {
+        debugPanel.transform.position = new Vector3(286, -150, 0);
+    }
+
     
 }
 
