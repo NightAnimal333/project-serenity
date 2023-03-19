@@ -5,9 +5,9 @@ This game was developed as a part of [March Game Jam 2023](https://itch.io/jam/m
 ## Team
 Arvid Lundberg - Sonic Artisan
 
-[Spotify](https://open.spotify.com/artist/24h2o0HACWwgsS2Fbgqz50?si=9978c80eb5784e00)
+[Website](https://arvidlundberg.se/)
 
-[Website](arvidlundberg.se)
+[Spotify](https://open.spotify.com/artist/24h2o0HACWwgsS2Fbgqz50?si=9978c80eb5784e00)
 
 Artūrs Umbraško - Digital Dreamweaver
 
