@@ -13,7 +13,7 @@ public class PlayerController : MonoBehaviour
     private float HEALING_SPEED;
 
     [SerializeField]
-    private float health = 100;
+    public float health = 100;
 
 
     private bool healing = false;
