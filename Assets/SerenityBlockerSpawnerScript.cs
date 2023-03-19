@@ -17,6 +17,8 @@ public class SerenityBlockerSpawnerScript : MonoBehaviour
     private float maxTimeBetweenSpawns;
     [SerializeField]
     private float minTimeBetweenSpawns;
+    [SerializeField]
+    private int concurrentBlockers;
 
     private float timer;
 
@@ -33,7 +35,7 @@ public class SerenityBlockerSpawnerScript : MonoBehaviour
     void Update()
     {
 
-        if (blockers.Count < 4 && !waiting){
+        if (blockers.Count < concurrentBlockers && !waiting){
             timer = Random.Range(minTimeBetweenSpawns, maxTimeBetweenSpawns);
             waiting = true;
         }
