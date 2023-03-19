@@ -5,25 +5,26 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     [SerializeField]
-    private float SPEED;
+    public float SPEED;
 
     [SerializeField]
-    private float MAX_HEALTH;
+    public float MAX_HEALTH;
     [SerializeField]
-    private float DAMAGE_ON_HIT;
+    public float DAMAGE_ON_HIT;
     [SerializeField]
-    private float HEALING_SPEED;
+    public float HEALING_SPEED;
 
     [SerializeField]
-    private float DRAG_MODIFIER;
+    public float DRAG_MODIFIER;
     [SerializeField]
-    private float ACCELERATION_MODIFIER;
+    public float ACCELERATION_MODIFIER;
 
     [SerializeField]
-    private float health = 100;
+    public float health = 100;
 
     [SerializeField]
-    private float MAX_VELOCITY = 1000;
+    public float MAX_VELOCITY = 1000;
+
 
 
     private bool healing = false;
@@ -100,17 +101,22 @@ public class PlayerController : MonoBehaviour
                 slerpTimer += ACCELERATION_MODIFIER * Time.deltaTime;
             }
 
-
         }
         else
         {
             velocity = new Vector3(-MAX_VELOCITY, 0, 0);
         }
 
+        // Update health, speed, velocity, and damage on hit text from HealthUI
+
         HealthUI healthUI = FindObjectOfType<HealthUI>();
         if (healthUI != null)
         {
             healthUI.UpdateHealthText(health);
+            healthUI.UpdateSpeedText(SPEED);
+            healthUI.UpdateMaxVelocityText(MAX_VELOCITY);
+            healthUI.UpdateDamageOnHitText(DAMAGE_ON_HIT);
+
         }
 
 

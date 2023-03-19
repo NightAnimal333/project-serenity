@@ -1,0 +1,20 @@
+fileFormatVersion: 2
+guid: 02620f3dff68e194a82bc5f5f33604ee
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - debugPanel: {instanceID: 0}
+  - speedSlider: {instanceID: 0}
+  - maxHealthSlider: {instanceID: 0}
+  - damageOnHitSlider: {instanceID: 0}
+  - healingSpeedSlider: {instanceID: 0}
+  - dragModifierSlider: {instanceID: 0}
+  - accelerationModifierSlider: {instanceID: 0}
+  - maxVelocitySlider: {instanceID: 0}
+  - playerController: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
