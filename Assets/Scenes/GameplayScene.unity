@@ -385,7 +385,7 @@ MonoBehaviour:
   blockers: []
   maxTimeBetweenSpawns: 3
   minTimeBetweenSpawns: 6
-  concurrentBlockers: 4
+  concurrentBlockers: 8
 --- !u!1 &536662421
 GameObject:
   m_ObjectHideFlags: 0
@@ -539,18 +539,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db2f1b26a7f9a1dc2bbff1e51fe90400, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SPEED: 10
---- !u!136 &595957110
   SPEED: 0.1
-  MAX_HEALTH: 100
-  DAMAGE_ON_HIT: 10
-  HEALING_SPEED: 3
-  DRAG_MODIFIER: 2
+  MAX_HEALTH: 0
+  DAMAGE_ON_HIT: 0
+  HEALING_SPEED: 0
+  DRAG_MODIFIER: 0
   ACCELERATION_MODIFIER: 1
   health: 100
-  MAX_VELOCITY: 100
+  MAX_VELOCITY: 1000
   lerping: 0
   slerpTimer: 0
+--- !u!4 &595957114 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2360310409935436271, guid: f3ee8cc6bad22c9be94e7d48d0af0203, type: 3}
+  m_PrefabInstance: {fileID: 4888015300573781601}
+  m_PrefabAsset: {fileID: 0}
 --- !u!136 &595957115
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -574,11 +577,6 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
---- !u!4 &595957114 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 2360310409935436271, guid: f3ee8cc6bad22c9be94e7d48d0af0203, type: 3}
-  m_PrefabInstance: {fileID: 4888015300573781601}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &667641751
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1278,6 +1276,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1137693292}
+  - {fileID: 11819241}
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1390,6 +1389,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 274217118}
+  - {fileID: 2110675200}
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

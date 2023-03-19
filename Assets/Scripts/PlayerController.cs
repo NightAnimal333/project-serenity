@@ -54,22 +54,12 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!blocked){
-        Vector3 velocity = new Vector3(0,0,0);
+        if (!blocked)
+        {
 
-        if (Input.GetKey(KeyCode.D) && !blocked)
-        { 
-            targetVelocity.x += 5;
-        }
-        else if (Input.GetKey(KeyCode.A) || blocked)
-        {
-            targetVelocity.x -= 5;
-        } else 
-        {
-            //targetVelocity = new Vector3(0, 0, 0);
             // Basic input checks
             if (Input.GetKey(KeyCode.D) && targetVelocity.x < MAX_VELOCITY)
-            { 
+            {
                 targetVelocity.x += 5;
                 keyPressed = true;
                 lerping = true;
@@ -79,7 +69,8 @@ public class PlayerController : MonoBehaviour
                 targetVelocity.x -= 5;
                 keyPressed = true;
                 lerping = true;
-            } else 
+            }
+            else
             {
                 keyPressed = false;
             }
@@ -87,40 +78,32 @@ public class PlayerController : MonoBehaviour
             bool leftPressed = Input.GetKeyDown(KeyCode.A);
             bool rightPressed = Input.GetKeyDown(KeyCode.D);
 
-            if (leftPressed || rightPressed){
-                if (!(leftPressed && velocity.x < 0) && !(rightPressed && velocity.x > 0)){
+            if (leftPressed || rightPressed)
+            {
+                if (!(leftPressed && velocity.x < 0) && !(rightPressed && velocity.x > 0))
+                {
                     velocity = velocity / 2;
                 }
                 targetVelocity = new Vector3(0, 0, 0);
-                slerpTimer = 0;                
+                slerpTimer = 0;
             }
 
-            if (slerpTimer > 1 && !keyPressed){
+            if (slerpTimer > 1 && !keyPressed)
+            {
                 slerpTimer = 0;
                 lerping = false;
             }
 
-            // if (!keyPressed){
-            //     targetVelocity = new Vector3(0, 0, 0);
-            //     slerpTimer = 0f;
-            //     lerping = true;
-            // }
-
-            // // dragging = false;
-            // if (!lerping && !keyPressed && velocity.magnitude > 0.5f){
-            //     targetVelocity = new Vector3(0, 0, 0);
-            //     slerpTimer = 0f;
-            //     lerping = true;
-            //     // dragging = true;
-            // }
-
-            if (lerping){
+            if (lerping)
+            {
                 velocity = Vector3.Lerp(velocity, targetVelocity, slerpTimer);
                 slerpTimer += ACCELERATION_MODIFIER * Time.deltaTime;
             }
 
 
-        } else {
+        }
+        else
+        {
             velocity = new Vector3(-MAX_VELOCITY, 0, 0);
         }
 
