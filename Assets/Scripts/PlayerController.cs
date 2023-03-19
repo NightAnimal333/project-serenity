@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
@@ -26,6 +27,10 @@ public class PlayerController : MonoBehaviour
     private float deathFloat;
     public float deathSpeed;
     public Material blitMat;
+
+    private bool hasDied;
+
+
     [SerializeField]
     private MusicManagerController musicManagerController;
 
@@ -42,8 +47,9 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         // rigidbody = gameObject.GetComponent<Rigidbody>();
-
+        hasDied = false;
         deathFloat = -1f;
+        blitMat.SetFloat("_DeathFloat", deathFloat);
     }
 
     // Update is called once per frame
@@ -70,7 +76,8 @@ public class PlayerController : MonoBehaviour
 
 
 
-        if (healing && health < 100 && !blocked){
+        if (healing && health < 100 && !blocked)
+        {
             health += HEALING_SPEED * Time.deltaTime;
         }
 
@@ -88,69 +95,92 @@ public class PlayerController : MonoBehaviour
             {
                 musicManagerController.PlayTheme(MusicManagerController.Theme.Broken);
             }
-        // if (!dragging){
-        //     transform.position += new Vector3(velocity.x * Time.deltaTime, 0, 0) * SPEED;
-        // } else {
-        //     transform.position += new Vector3(velocity.x * Time.deltaTime, 0, 0) * SPEED / DRAG_MODIFIER;
-        // }
+            // if (!dragging){
+            //     transform.position += new Vector3(velocity.x * Time.deltaTime, 0, 0) * SPEED;
+            // } else {
+            //     transform.position += new Vector3(velocity.x * Time.deltaTime, 0, 0) * SPEED / DRAG_MODIFIER;
+            // }
 
-        transform.position += new Vector3(velocity.x * Time.deltaTime, 0, 0) * SPEED;
 
-        if (health <= 0){
-
-            playerVisuals.active = false;
-
-            deathFloat = Mathf.Lerp(deathFloat, 1.1f, deathSpeed * Time.deltaTime);
-            blitMat.SetFloat("_DeathFloat", deathFloat);
-            Debug.Log("HEY");
-
-            if (deathFloat > 1f)
+            if (health <= 0)
             {
-                //Switch to other scene
+                
+                playerVisuals.active = false;
+                if (!hasDied)
+                    musicManagerController.PlaySound(MusicManagerController.Sound.Death);
+                hasDied = true;
+
+                deathFloat = Mathf.Lerp(deathFloat, 1.1f, deathSpeed * Time.deltaTime);
+                blitMat.SetFloat("_DeathFloat", deathFloat);
+                Debug.Log("HEY");
+
+                if (deathFloat > 1f)
+                {
+                    //Switch to other scene
+                    SceneManager.LoadScene("MainMenu");
+                }
+            }
+            if (!healing) {
+                timeInLight += Time.deltaTime;
+                if (timeInLight >= maxTimeInLight)
+                {
+                    musicManagerController.PlayTheme(MusicManagerController.Theme.Broken);
+                }
+            }
+            else
+            {
+                timeInLight = 0;
+            }
+
+        }
+    }
+    void OnTriggerEnter(Collider collider)
+        {
+            
+            Debug.Log("TriggerEnter");
+        if (!hasDied)
+        {
+            if (collider.gameObject.tag == "Obstacle")
+            {
+                // Debug.Log("Hit an obstacle!");
+                musicManagerController.PlaySound(MusicManagerController.Sound.Hit);
+                health -= DAMAGE_ON_HIT;
+            }
+            else if (collider.gameObject.tag == "Serenity")
+            {
+                // Debug.Log("I'm in serenity");
+                healing = true;
+                musicManagerController.PlayTheme(MusicManagerController.Theme.Dark);
+                musicManagerController.PlaySound(MusicManagerController.Sound.IntoSerenity);
+            }
+            else if (collider.gameObject.tag == "Border")
+            {
+
+            }
+            if (collider.gameObject.tag == "SerenityBlocker")
+            {
+                musicManagerController.PlaySound(MusicManagerController.Sound.SerenityBlocked);
+                blocked = true;
             }
         }
-        else
+
+        }
+
+        void OnTriggerExit(Collider collider)
         {
-            timeInLight = 0;
-        }
+            Debug.Log("TriggerExit");
+            if (collider.gameObject.tag == "Serenity")
+            {
+                // Debug.Log("I'm in noise");
+                musicManagerController.PlayTheme(MusicManagerController.Theme.Light);
+                musicManagerController.PlaySound(MusicManagerController.Sound.IntoNoise);
+                healing = false;
+            }
+            if (collider.gameObject.tag == "SerenityBlocker")
+            {
+                blocked = false;
+            }
 
-    }
-
-    void OnTriggerEnter(Collider collider)
-    {
-        Debug.Log("TriggerEnter");
-        if (collider.gameObject.tag == "Obstacle"){
-            // Debug.Log("Hit an obstacle!");
-            musicManagerController.PlaySound(MusicManagerController.Sound.Hit);
-            health -= DAMAGE_ON_HIT;
-        }
-        else if (collider.gameObject.tag == "Serenity"){
-            // Debug.Log("I'm in serenity");
-            healing = true;
-            musicManagerController.PlayTheme(MusicManagerController.Theme.Dark);
-            musicManagerController.PlaySound(MusicManagerController.Sound.IntoSerenity);
-        } else if (collider.gameObject.tag == "Border"){
-
-        }
-        if (collider.gameObject.tag == "SerenityBlocker"){
-            musicManagerController.PlaySound(MusicManagerController.Sound.SerenityBlocked);
-            blocked = true;
-        }
-
-    }
-
-    void OnTriggerExit(Collider collider)
-    {
-        Debug.Log("TriggerExit");
-        if (collider.gameObject.tag == "Serenity"){
-            // Debug.Log("I'm in noise");
-            musicManagerController.PlayTheme(MusicManagerController.Theme.Light);
-            musicManagerController.PlaySound(MusicManagerController.Sound.IntoNoise);
-            healing = false;
-        }
-        if (collider.gameObject.tag == "SerenityBlocker"){
-            blocked = false;
-        }
-
+        
     }
 }
