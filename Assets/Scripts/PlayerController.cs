@@ -126,9 +126,18 @@ public class PlayerController : MonoBehaviour
         if (blocked)
             targetSpeed = -topSpeed;
 
-        speed = Mathf.Lerp(speed, targetSpeed, accelerationSpeed * Time.deltaTime);
+        float x = gameObject.transform.position.x;
+        if (x >= 14)
+            targetSpeed = -topSpeed;
+        else if (x <= -4)
+            targetSpeed = topSpeed;
+
+        speed = Mathf.Lerp(speed, targetSpeed * Time.deltaTime, accelerationSpeed * Time.deltaTime);
 
         gameObject.transform.position += new Vector3(speed, 0f, 0f);
+
+
+        
 
 
 
