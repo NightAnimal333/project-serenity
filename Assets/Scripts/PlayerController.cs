@@ -110,13 +110,16 @@ public class PlayerController : MonoBehaviour
                     SceneManager.LoadScene("MainMenu");
                     blitMat.SetFloat("_DeathFloat", -1f);
                 }
+            } else if (health <= 50)
+            {
+                musicManagerController.PlayTheme(MusicManagerController.Theme.Broken);
             }
 
 
             timeInLight += Time.deltaTime;
             if (timeInLight >= maxTimeInLight)
             {
-                musicManagerController.PlayTheme(MusicManagerController.Theme.Broken);
+                //musicManagerController.PlayTheme(MusicManagerController.Theme.Broken);
             }
 
         }
@@ -136,6 +139,13 @@ public class PlayerController : MonoBehaviour
                 // Debug.Log("Hit an obstacle!");
                 musicManagerController.PlaySound(MusicManagerController.Sound.Hit);
                 health -= DAMAGE_ON_HIT;
+
+                //float temp = Random.Range(0f, 100f);
+                //int feedbackDirection = 1;
+                //if (feedbackDirection > 50)
+                //{
+                //    feedbackDirection = -1;
+                //}
             }
             else if (collider.gameObject.tag == "Serenity")
             {

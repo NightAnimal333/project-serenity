@@ -299,7 +299,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff297947934bb332d93e24f26082c226, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SPEED: 10
+  SPEED: 5
   blockerSpawner: {fileID: 0}
 --- !u!114 &9143323321967766996
 MonoBehaviour:

@@ -387,9 +387,9 @@ MonoBehaviour:
   spawner: {fileID: 1684255}
   blockerPrefab: {fileID: 5938798419367407416, guid: 596643810d9c3b11bb57b3c3ca172d79, type: 3}
   blockers: []
-  maxTimeBetweenSpawns: 2
-  minTimeBetweenSpawns: 5
-  concurrentBlockers: 8
+  maxTimeBetweenSpawns: 3
+  minTimeBetweenSpawns: 7
+  concurrentBlockers: 3
 --- !u!1 &531660107 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7582964321287285615, guid: da8de1cf4641c3046be5345dfeeaa619, type: 3}
@@ -549,8 +549,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MAX_HEALTH: 100
-  DAMAGE_ON_HIT: 5
-  HEALING_SPEED: 3
+  DAMAGE_ON_HIT: 3
+  HEALING_SPEED: 1
   health: 100
   topSpeed: 10
   accelerationSpeed: 5
@@ -949,7 +949,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6413639196399868445, guid: ecfa2fd94b0e87148a291faadf630162, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 360
+      value: -360
       objectReference: {fileID: 0}
     - target: {fileID: 6413639196399868445, guid: ecfa2fd94b0e87148a291faadf630162, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
