@@ -128,7 +128,9 @@ public class PlayerController : MonoBehaviour
                 if (deathFloat > 1f)
                 {
                     //Switch to other scene
+                    
                     SceneManager.LoadScene("MainMenu");
+                    blitMat.SetFloat("_DeathFloat", -1f);
                 }
             }
             if (!healing) {
