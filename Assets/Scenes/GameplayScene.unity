@@ -560,7 +560,7 @@ MonoBehaviour:
   accelerationSpeed: 5
   deathSpeed: 0.66
   blitMat: {fileID: 2100000, guid: 6f45dbff003284744b41f87dce7b7ef3, type: 2}
-  musicManagerController: {fileID: 645377836}
+  
   playerVisuals: {fileID: 531660107}
   maxTimeInLight: 0
 --- !u!4 &595957114 stripped

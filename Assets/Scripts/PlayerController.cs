@@ -81,26 +81,6 @@ public class PlayerController : MonoBehaviour
     if (healing && health < 100 && !blocked)
     {
 
-        float hInput = Convert.ToSingle(Input.GetKey(KeyCode.D)) - Convert.ToSingle(Input.GetKey(KeyCode.A));
-
-        float targetSpeed = hInput * topSpeed;
-        if (blocked)
-            targetSpeed = -topSpeed;
-
-        float x = gameObject.transform.position.x;
-        if (x >= 14)
-            targetSpeed = -topSpeed;
-        else if (x <= -4)
-            targetSpeed = topSpeed;
-
-        speed = Mathf.Lerp(speed, targetSpeed * Time.deltaTime, accelerationSpeed * Time.deltaTime);
-
-        gameObject.transform.position += new Vector3(speed, 0f, 0f);
-
-
-
-
-
         if (healing && health < 100 && !blocked)
         {
             health += HEALING_SPEED * Time.deltaTime;
@@ -116,7 +96,7 @@ public class PlayerController : MonoBehaviour
     {
         timeInLight = 0;
     }
-}
+
 
 
         if (!healing)
