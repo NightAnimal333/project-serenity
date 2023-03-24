@@ -23,6 +23,10 @@ Johnny Hamnesjö - Interface Alchemist
 
 Martin Lorentzon - Architect of Interactive Realms
 
+[LinkedIn](https://www.linkedin.com/in/martin-lorentzon/)
+
+[Twitter](https://twitter.com/our_ta_martin)
+
 
 ## Controls
 Press 'A' to move left, press 'D' to move right.
